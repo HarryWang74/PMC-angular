@@ -8,4 +8,5 @@ export class Product {
     starRating: number;
     imageUrl: string;
     tags?: Array<string>;
+    deleting?: boolean;
 }

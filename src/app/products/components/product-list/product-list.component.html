@@ -17,17 +17,18 @@
   </div>
 
   <ng-container *ngFor="let product of products">
-    <div class="row border-bottom pb-2 pt-2">
+    <div class="row border-bottom pb-2 pt-2" *ngIf="product.deleting"><h3>Deleting ... </h3></div>
+    <div class="row border-bottom pb-2 pt-2" *ngIf="!product.deleting">
       <div class="col-md-2"><img class="img-fluid" src={{product.imageUrl}}></div>
       <div class="col-md-2">{{product.productName}}</div>
       <div class="col-md-1">{{product.productCode}}</div>
       <div class="col-md-1">{{product.releaseDate}}</div>
-      <div class="col-md-1">{{product.price}}</div>
+      <div class="col-md-1">{{product.price | currency:'USD':symbol:'1.2-2' }}</div>
       <div class="col-md-2">{{product.starRating}}</div>
       <div class="col-md-3 text-right">
         <button type="button" class="btn btn-primary btn-sm mr-1">View</button>
         <button type="button" class="btn btn-primary btn-sm mr-1">Edit</button>
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product)">Delete</button>
       </div>
     </div>
   </ng-container>

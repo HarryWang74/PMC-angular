@@ -66,4 +66,8 @@ export class ProductService {
 
     return of(products).pipe(delay(2000));
   }
+
+  deleteProduct(product: Product): Observable<Product> {
+    return of(product).pipe(delay(1000));
+  }
 }

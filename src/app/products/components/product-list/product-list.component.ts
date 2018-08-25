@@ -24,10 +24,20 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts().subscribe(
       products => {
         this.products = products;
-        console.log(this.products);
         this.loading = false;
       }
     );
   }
 
+  deleteProduct(product: Product): void {
+    product.deleting = true;
+    this.productService.deleteProduct(product).subscribe(
+      deletedProduct => {
+        let index = this.products.indexOf(deletedProduct);
+        if ( index !== -1) {
+          this.products.splice(index, 1);
+        }
+      }
+    );
+  }
 }
