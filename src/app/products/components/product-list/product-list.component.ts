@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -7,6 +8,8 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  loading: boolean;
+  products: Product[];
 
   constructor(
     private productService: ProductService) { }
@@ -17,9 +20,12 @@ export class ProductListComponent implements OnInit {
 
 
   loadData(): void {
-    this.productService.getProducts().subscribe( // observable version
+    this.loading = true;
+    this.productService.getProducts().subscribe(
       products => {
-        console.log(products);
+        this.products = products;
+        console.log(this.products);
+        this.loading = false;
       }
     );
   }
