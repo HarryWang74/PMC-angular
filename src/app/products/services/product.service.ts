@@ -5,6 +5,7 @@ import { Product } from '../models/product';
 
 @Injectable()
 export class ProductService {
+  product: Product;
   products = [
     {
       id: 1,
@@ -64,6 +65,11 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
     return of(this.products).pipe(delay(2000));
+  }
+
+  getProduct(id: number): Observable<Product> {
+    this.product = this.products.find(item => item.id === id);
+    return of(this.product).pipe(delay(1000));
   }
 
   deleteProduct(product: Product): Observable<Product> {
