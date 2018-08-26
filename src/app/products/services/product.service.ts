@@ -14,7 +14,7 @@ export class ProductService {
       description: 'Leaf rake with 48-inch wooden handle.',
       price: 19.95,
       starRating: 3,
-      imageUrl: 'http://via.placeholder.com/350x150',
+      imageUrl: 'http://via.placeholder.com/800x500',
       tags: ['rake', 'leaf', 'yard', 'home']
     },
     {
@@ -25,7 +25,7 @@ export class ProductService {
       description: '15 gallon capacity rolling garden cart',
       price: 32.99,
       starRating: 4,
-      imageUrl: 'http://via.placeholder.com/350x150'
+      imageUrl: 'http://via.placeholder.com/800x500',
     },
     {
         id: 5,
@@ -35,7 +35,7 @@ export class ProductService {
         description: 'Curved claw steel hammer',
         price: 8.9,
         starRating: 4,
-        imageUrl: 'http://via.placeholder.com/350x150',
+        imageUrl: 'http://via.placeholder.com/800x500',
         tags: ['tools', 'hammer', 'construction']
     },
     {
@@ -46,7 +46,7 @@ export class ProductService {
         description: '15-inch steel blade hand saw',
         price: 11.55,
         starRating: 3,
-        imageUrl: 'http://via.placeholder.com/350x150'
+        imageUrl: 'http://via.placeholder.com/800x500',
     },
     {
         id: 10,
@@ -56,7 +56,7 @@ export class ProductService {
         description: 'Standard two-button video game controller',
         price: 35.95,
         starRating: 4,
-        imageUrl: 'http://via.placeholder.com/350x150'
+        imageUrl: 'http://via.placeholder.com/800x500',
     }
   ];
 

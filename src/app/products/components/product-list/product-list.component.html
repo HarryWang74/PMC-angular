@@ -1,11 +1,11 @@
-<div class="row mb-3 mt-3">
-  <h1>Product list</h1>
-</div>
-
 <ng-container *ngIf="loading">
   <h2>Loading ... </h2>
 </ng-container>
 <ng-container *ngIf="!loading">
+  <div class="row mb-3 mt-3">
+    <h1>Product list</h1>
+  </div>
+
   <div class="row border-bottom pb-2">
     <div class="col-md-2">Image</div>
     <div class="col-md-2">Product name</div>
