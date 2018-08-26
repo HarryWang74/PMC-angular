@@ -26,7 +26,7 @@
       <div class="col-md-1">{{product.price | currency:'USD':symbol:'1.2-2' }}</div>
       <div class="col-md-2">{{product.starRating}}</div>
       <div class="col-md-3 text-right">
-        <button type="button" class="btn btn-primary btn-sm mr-1">View</button>
+        <button type="button" class="btn btn-primary btn-sm mr-1" [routerLink]="['/product', product.id]">View</button>
         <button type="button" class="btn btn-primary btn-sm mr-1">Edit</button>
         <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product)">Delete</button>
       </div>
