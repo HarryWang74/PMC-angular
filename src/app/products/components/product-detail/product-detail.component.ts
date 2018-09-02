@@ -30,9 +30,6 @@ export class ProductDetailComponent implements OnInit {
         this.loading = false;
       }
     );
-
-
-    this.productService.getProduct(this.id);
   }
 
 }

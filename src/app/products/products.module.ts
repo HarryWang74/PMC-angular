@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductService } from './services/product.service';
@@ -10,7 +11,7 @@ import { ProductEditGuardService } from './services/product-edit-guard.service';
 
 @NgModule({
   imports: [
-    CommonModule, ProductsRoutingModule
+    CommonModule, ProductsRoutingModule, ReactiveFormsModule
   ],
   declarations: [ProductListComponent, ProductDetailComponent, ProductEditComponent],
   providers: [ProductService, ProudctDetailGuardService, ProductEditGuardService],

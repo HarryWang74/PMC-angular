@@ -29,7 +29,7 @@ export class ProductService {
       imageUrl: 'http://via.placeholder.com/800x500',
     },
     {
-        id: 5,
+        id: 3,
         productName: 'Hammer',
         productCode: 'TBX-0048',
         releaseDate: 'May 21, 2016',
@@ -40,7 +40,7 @@ export class ProductService {
         tags: ['tools', 'hammer', 'construction']
     },
     {
-        id: 8,
+        id: 4,
         productName: 'Saw',
         productCode: 'TBX-0022',
         releaseDate: 'May 15, 2016',
@@ -50,7 +50,7 @@ export class ProductService {
         imageUrl: 'http://via.placeholder.com/800x500',
     },
     {
-        id: 10,
+        id: 5,
         productName: 'Video Game Controller',
         productCode: 'GMG-0042',
         releaseDate: 'October 15, 2015',
@@ -68,11 +68,30 @@ export class ProductService {
   }
 
   getProduct(id: number): Observable<Product> {
-    this.product = this.products.find(item => item.id === id);
-    return of(this.product).pipe(delay(1000));
+    if (id === 0) {
+      this.product = this.initializeProduct();
+      return of(this.product).pipe(delay(1000));
+    } else {
+      this.product = this.products.find(item => item.id === id);
+      return of(this.product).pipe(delay(1000));
+    }
   }
 
   deleteProduct(product: Product): Observable<Product> {
     return of(product).pipe(delay(1000));
+  }
+
+  initializeProduct(): Product {
+    return {
+        id: 0,
+        productName: null,
+        productCode: null,
+        tags: [''],
+        releaseDate: null,
+        price: null,
+        description: null,
+        starRating: null,
+        imageUrl: null
+    };
   }
 }
