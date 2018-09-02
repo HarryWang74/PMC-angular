@@ -27,14 +27,14 @@
       <div class="col-md-2">{{product.starRating}}</div>
       <div class="col-md-3 text-right">
         <button type="button" class="btn btn-primary btn-sm mr-1" [routerLink]="['/product', product.id]">View</button>
-        <button type="button" class="btn btn-primary btn-sm mr-1">Edit</button>
+        <button type="button" class="btn btn-primary btn-sm mr-1" [routerLink]="['/productEdit', product.id]">Edit</button>
         <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product)">Delete</button>
       </div>
     </div>
   </ng-container>
   <div class="row pt-4">
     <div class="col-md-12 text-right">
-      <button type="button" class="btn btn-primary">Add product</button>
+      <button type="button" class="btn btn-primary" [routerLink]="['/productEdit', 0]">Add product</button>
     </div>
   </div>
 </ng-container>

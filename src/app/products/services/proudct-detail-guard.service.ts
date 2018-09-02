@@ -10,7 +10,7 @@ export class ProudctDetailGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     let id = +route.params.id;
-    if (isNaN(id) || id < 1) {
+    if (isNaN(id) || id < 0) {
         alert('Invalid product Id');
         // start a new navigation to redirect to list page
         this.router.navigate(['list']);
