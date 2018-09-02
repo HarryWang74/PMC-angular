@@ -84,7 +84,7 @@ export class ProductService {
   initializeProduct(): Product {
     return {
         id: 0,
-        productName: null,
+        productName: 'New product',
         productCode: null,
         tags: [''],
         releaseDate: null,

@@ -15,6 +15,10 @@ export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
   product: Product;
 
+  get tags(): FormArray {
+    return <FormArray>this.productForm.get('tags');
+  }
+
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -26,6 +30,7 @@ export class ProductEditComponent implements OnInit {
       productName: ['', [Validators.required,
                          Validators.minLength(3),
                          Validators.maxLength(50)]],
+      imageUrl: '',
       productCode: ['', Validators.required],
       starRating: [''],
       tags: this.fb.array([]),
@@ -42,8 +47,17 @@ export class ProductEditComponent implements OnInit {
     this.productService.getProduct(this.id).subscribe(
       product => {
         this.product = product;
-        this.loading = false;
-        console.log(this.product);
+        this.productForm.patchValue({
+          productName: this.product.productName,
+          productCode: this.product.productCode,
+          starRating: this.product.starRating,
+          description: this.product.description,
+          imageUrl: this.product.imageUrl
+        });
+        this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
       }
     );
   }

@@ -1,3 +1,89 @@
-<p>
-  product-edit works!
-</p>
+<ng-container *ngIf="loading">
+  <h2>Loading ... </h2>
+</ng-container>
+<ng-container *ngIf="!loading">
+  <div class="row mb-3 mt-3">
+    <h1 *ngIf="!product.id == 0">Edit product</h1>
+    <h1 *ngIf="product.id == 0">Create product</h1>
+  </div>
+  <form class="form-horizontal"
+    novalidate
+    [formGroup]="productForm" >
+    <fieldset>
+      <div class="form-group" >
+        <label class="control-label" for="productName">Product Name</label>
+        <input class="form-control" 
+                id="productName" 
+                type="text" 
+                placeholder="Name (required)" 
+                formControlName="productName" />
+      </div>
+
+      <div class="form-group" >
+          <label class="control-label" for="imageUrl">Product Image</label>
+          <input class="form-control" 
+                  id="imageUrl" 
+                  type="text" 
+                  placeholder="Image url" 
+                  formControlName="imageUrl" />
+      </div>
+
+      <div class="form-group" >
+        <label class="control-label" for="productCodeId">Product Code</label>
+        <input class="form-control" 
+                id="productCodeId" 
+                type="text" 
+                placeholder="Code (required)" 
+                formControlName="productCode" />
+      </div>
+
+      <div class="form-group">
+          <label class="control-label" for="starRatingId">Star Rating (1-5)</label>
+          <input class="form-control" 
+                  id="starRatingId" 
+                  type="text" 
+                  placeholder="Rating" 
+                  formControlName="starRating" />
+      </div>
+
+      <div class="form-group">
+          <label class="control-label" for="descriptionId">Description</label>
+          <textarea class="form-control" 
+                  id="descriptionId" 
+                  placeholder="Description"
+                  rows=3
+                  formControlName="description"></textarea>
+      </div>
+
+
+      <div formArrayName="tags">
+          <label class="control-label">Tags</label>
+          
+          <div class="form-group row">
+              <div class="col-md-3"
+              *ngFor="let tag of tags.controls; let i=index">
+              <input class="form-control" 
+              [id]="i" 
+              type="text" 
+              placeholder="Tag" 
+              [formControlName]="i" />
+            </div>
+          </div>
+          <div class="text-right">
+              <button class="btn btn-primary btn-sm"
+                      type="button"
+                      (click)="addTag()">Add Tag
+              </button>
+          </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <hr>
+  <div class="row pt-4">
+      <div class="col-md-12 text-right">
+        <button type="button" class="btn btn-primary" *ngIf="!product.id == 0">Save</button>
+        <button type="button" class="btn btn-primary" *ngIf="product.id == 0">Create</button>
+      </div>
+  </div>
+</ng-container>
