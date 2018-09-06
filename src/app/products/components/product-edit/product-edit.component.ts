@@ -29,13 +29,14 @@ export class ProductEditComponent implements OnInit {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required,
                          Validators.minLength(3),
-                         Validators.maxLength(50)]],
+                         Validators.maxLength(10)]],
       imageUrl: '',
       productCode: ['', Validators.required],
       starRating: [''],
       tags: this.fb.array([]),
       description: ''
     });
+  
 
     this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.loadDate();
@@ -58,6 +59,7 @@ export class ProductEditComponent implements OnInit {
         setTimeout(() => {
           this.loading = false;
         }, 500);
+        console.log(this.productForm.controls.productName.touched);
       }
     );
   }

@@ -3,20 +3,31 @@
 </ng-container>
 <ng-container *ngIf="!loading">
   <div class="row mb-3 mt-3">
+    <!--
     <h1 *ngIf="!product.id == 0">Edit product</h1>
     <h1 *ngIf="product.id == 0">Create product</h1>
+    -->
   </div>
   <form class="form-horizontal"
     novalidate
-    [formGroup]="productForm" >
+    [formGroup]="productForm">
     <fieldset>
       <div class="form-group" >
         <label class="control-label" for="productName">Product Name</label>
-        <input class="form-control" 
-                id="productName" 
-                type="text" 
+        <input class="form-control"
+                id='productName' 
+                type="text"
                 placeholder="Name (required)" 
-                formControlName="productName" />
+                formControlName="productName" required />
+          <div *ngIf="productForm.controls.productName.invalid && (productForm.controls.productName.dirty || productForm.controls.productName.touched)"
+          class="alert alert-danger">
+          <div *ngIf="productForm.controls.productName.errors.required">
+              Product name is required.
+            </div>
+            <div *ngIf="productForm.controls.productName.errors.minlength">
+              Product name must be at least 3 characters long.
+            </div>
+          </div>
       </div>
 
       <div class="form-group" >
@@ -69,6 +80,7 @@
               [formControlName]="i" />
             </div>
           </div>
+
           <div class="text-right">
               <button class="btn btn-primary btn-sm"
                       type="button"
@@ -80,10 +92,12 @@
   </form>
 
   <hr>
+  
   <div class="row pt-4">
       <div class="col-md-12 text-right">
         <button type="button" class="btn btn-primary" *ngIf="!product.id == 0">Save</button>
         <button type="button" class="btn btn-primary" *ngIf="product.id == 0">Create</button>
       </div>
   </div>
+
 </ng-container>
