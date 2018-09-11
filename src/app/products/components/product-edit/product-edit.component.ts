@@ -64,4 +64,8 @@ export class ProductEditComponent implements OnInit {
       }
     );
   }
+
+  addTag(): void {
+    this.tags.push(new FormControl());
+  }
 }
