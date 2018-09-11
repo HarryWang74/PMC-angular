@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NumberValidators } from '../../validators/number.validator';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 
@@ -19,7 +20,7 @@ export class ProductEditComponent implements OnInit {
     return <FormArray>this.productForm.get('tags');
   }
 
-  constructor(
+  constructor( 
     private fb: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute
@@ -32,7 +33,7 @@ export class ProductEditComponent implements OnInit {
                          Validators.maxLength(10)]],
       imageUrl: '',
       productCode: ['', Validators.required],
-      starRating: [''],
+      starRating: ['', NumberValidators.range(1, 5)],
       tags: this.fb.array([]),
       description: ''
     });
@@ -59,7 +60,6 @@ export class ProductEditComponent implements OnInit {
         setTimeout(() => {
           this.loading = false;
         }, 500);
-        console.log(this.productForm.controls.productName.touched);
       }
     );
   }
