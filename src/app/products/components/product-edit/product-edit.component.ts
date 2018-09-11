@@ -30,7 +30,7 @@ export class ProductEditComponent implements OnInit {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required,
                          Validators.minLength(3),
-                         Validators.maxLength(10)]],
+                         Validators.maxLength(50)]],
       imageUrl: '',
       productCode: ['', Validators.required],
       starRating: ['', NumberValidators.range(1, 5)],
@@ -59,6 +59,7 @@ export class ProductEditComponent implements OnInit {
         this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
         setTimeout(() => {
           this.loading = false;
+          console.log(this.productForm);
         }, 500);
       }
     );

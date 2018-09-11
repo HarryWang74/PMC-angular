@@ -107,8 +107,11 @@
   
   <div class="row pt-4">
       <div class="col-md-12 text-right">
-        <button type="button" class="btn btn-primary" *ngIf="!product.id == 0">Save</button>
-        <button type="button" class="btn btn-primary" *ngIf="product.id == 0">Create</button>
+        <button type="button" class="btn btn-danger mr-3" [routerLink]="['/list']">Cancel</button>
+        
+        <button type="button" class="btn btn-primary" *ngIf="!product.id == 0" [disabled]='!productForm.valid'>Save</button>
+        
+        <button type="button" class="btn btn-primary" *ngIf="product.id == 0" [disabled]='!productForm.valid'>Create</button>
       </div>
   </div>
 
