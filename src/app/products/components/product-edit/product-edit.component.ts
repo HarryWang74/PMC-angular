@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NumberValidators } from '../../validators/number.validator';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
@@ -13,6 +13,7 @@ import { Product } from '../../models/product';
 export class ProductEditComponent implements OnInit {
   id: number;
   loading: boolean;
+  saving: boolean;
   productForm: FormGroup;
   product: Product;
 
@@ -23,7 +24,8 @@ export class ProductEditComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -59,13 +61,35 @@ export class ProductEditComponent implements OnInit {
         this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
         setTimeout(() => {
           this.loading = false;
-          console.log(this.productForm);
         }, 500);
       }
     );
   }
 
-  addTag(): void {
+  addTag() {
     this.tags.push(new FormControl());
+  }
+
+  updateProduct(){
+    if (this.productForm.dirty && this.productForm.valid) {
+      this.saving = true;
+      // Copy the form values over the product object values
+      this.product = Object.assign({}, this.product, this.productForm.value);
+      this.productService.updateProduct(this.product).subscribe(
+        product => {
+          this.router.navigate(['list']);
+          this.saving = false;
+        }
+      );
+    }
+
+  }
+
+  canEdit(): boolean {
+    if(this.saving || this.loading){
+      return false;
+    }else{
+      return true;
+    }
   }
 }

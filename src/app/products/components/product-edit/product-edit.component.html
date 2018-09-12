@@ -1,12 +1,17 @@
 <ng-container *ngIf="loading">
   <h2>Loading ... </h2>
 </ng-container>
-<ng-container *ngIf="!loading">
+
+<ng-container *ngIf="saving">
+    <h2>Saving ... </h2>
+</ng-container>
+
+<ng-container *ngIf="canEdit()">
   <div class="row mb-3 mt-3">
-    <!--
-    <h1 *ngIf="!product.id == 0">Edit product</h1>
-    <h1 *ngIf="product.id == 0">Create product</h1>
-    -->
+
+    <h1 *ngIf="!id == 0">Edit product</h1>
+    <h1 *ngIf="id == 0">Create product</h1>
+
   </div>
   <form class="form-horizontal"
     novalidate
@@ -109,9 +114,9 @@
       <div class="col-md-12 text-right">
         <button type="button" class="btn btn-danger mr-3" [routerLink]="['/list']">Cancel</button>
         
-        <button type="button" class="btn btn-primary" *ngIf="!product.id == 0" [disabled]='!productForm.valid'>Save</button>
+        <button type="button" class="btn btn-primary" *ngIf="!id == 0" [disabled]='!productForm.valid' (click)="updateProduct()">Save</button>
         
-        <button type="button" class="btn btn-primary" *ngIf="product.id == 0" [disabled]='!productForm.valid'>Create</button>
+        <button type="button" class="btn btn-primary" *ngIf="id == 0" [disabled]='!productForm.valid'>Create</button>
       </div>
   </div>
 

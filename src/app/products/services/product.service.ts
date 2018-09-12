@@ -94,4 +94,16 @@ export class ProductService {
         imageUrl: null
     };
   }
+
+  updateProduct(product: Product): Observable<Product> {
+    console.log(product);
+    var updatedProduct = this.products.find(product => product.id === product.id);
+    if (updatedProduct != null) {
+      let updatedProjectIndex = this.products.indexOf(updatedProduct);
+      var temp = Object.assign({}, updatedProduct, product);
+      this.products[updatedProjectIndex] = temp;
+   }
+   console.log(this.products);
+    return of(product).pipe(delay(1000));
+  }
 }
