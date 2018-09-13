@@ -82,7 +82,6 @@ export class ProductEditComponent implements OnInit {
         }
       );
     }
-
   }
 
   canEdit(): boolean {
@@ -91,5 +90,16 @@ export class ProductEditComponent implements OnInit {
     }else{
       return true;
     }
+  }
+
+  createProduct(){
+    this.saving = false;
+    this.product = Object.assign({}, this.product, this.productForm.value);
+    this.productService.createProduct(this.product).subscribe(
+      product => {
+        this.router.navigate(['list']);
+        this.saving = false;
+      }
+    );
   }
 }

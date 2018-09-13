@@ -116,7 +116,7 @@
         
         <button type="button" class="btn btn-primary" *ngIf="!id == 0" [disabled]='!productForm.valid' (click)="updateProduct()">Save</button>
         
-        <button type="button" class="btn btn-primary" *ngIf="id == 0" [disabled]='!productForm.valid'>Create</button>
+        <button type="button" class="btn btn-primary" *ngIf="id == 0" [disabled]='!productForm.valid' (click)="createProduct()">Create</button>
       </div>
   </div>
 

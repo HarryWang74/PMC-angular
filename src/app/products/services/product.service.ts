@@ -6,7 +6,7 @@ import { Product } from '../models/product';
 @Injectable()
 export class ProductService {
   product: Product;
-  products = [
+  products: Product[] = [
     {
       id: 1,
       productName: 'Leaf Rake',
@@ -96,14 +96,19 @@ export class ProductService {
   }
 
   updateProduct(product: Product): Observable<Product> {
-    console.log(product);
     var updatedProduct = this.products.find(product => product.id === product.id);
     if (updatedProduct != null) {
       let updatedProjectIndex = this.products.indexOf(updatedProduct);
       var temp = Object.assign({}, updatedProduct, product);
       this.products[updatedProjectIndex] = temp;
    }
-   console.log(this.products);
+    return of(product).pipe(delay(1000));
+  }
+
+  createProduct(product: Product): Observable<Product> {
+    console.log(product);
+    product.id = this.products[this.products.length -1].id + 1;
+    this.products.push(product);
     return of(product).pipe(delay(1000));
   }
 }
