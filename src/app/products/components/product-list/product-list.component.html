@@ -6,6 +6,13 @@
     <h1>Product list</h1>
   </div>
 
+  <div class="row mb-3 form-group">    
+    <div class="col-md-4"><input class="form-control" 
+      type="text" 
+      [(ngModel)]='listFilter'
+      placeholder="Search" /></div>
+  </div>
+
   <div class="row border-bottom pb-2">
     <div class="col-md-2">Image</div>
     <div class="col-md-2">Product name</div>
@@ -16,7 +23,7 @@
     <div class="col-md-3"></div>
   </div>
 
-  <ng-container *ngFor="let product of products">
+  <ng-container *ngFor="let product of products | productFilter:listFilter ">
     <div class="row border-bottom pb-2 pt-2" *ngIf="product.deleting"><h3>Deleting ... </h3></div>
     <div class="row border-bottom pb-2 pt-2" *ngIf="!product.deleting">
       <div class="col-md-2"><img class="img-fluid" src={{product.imageUrl}}></div>

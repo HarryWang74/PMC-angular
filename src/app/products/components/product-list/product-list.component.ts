@@ -10,7 +10,8 @@ import { Product } from '../../models/product';
 export class ProductListComponent implements OnInit {
   loading: boolean;
   products: Product[];
-
+  listFilter: string;
+  
   constructor(
     private productService: ProductService) { }
 
