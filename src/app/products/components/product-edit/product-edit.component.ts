@@ -34,6 +34,7 @@ export class ProductEditComponent implements OnInit {
                          Validators.minLength(3),
                          Validators.maxLength(50)]],
       imageUrl: '',
+      price: '',
       productCode: ['', Validators.required],
       starRating: ['', NumberValidators.range(1, 5)],
       tags: this.fb.array([]),
@@ -56,7 +57,8 @@ export class ProductEditComponent implements OnInit {
           productCode: this.product.productCode,
           starRating: this.product.starRating,
           description: this.product.description,
-          imageUrl: this.product.imageUrl
+          imageUrl: this.product.imageUrl,
+          price: this.product.price
         });
         this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
         setTimeout(() => {
