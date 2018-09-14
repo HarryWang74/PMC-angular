@@ -29,7 +29,7 @@
       <div class="col-md-2"><img class="img-fluid" src={{product.imageUrl}}></div>
       <div class="col-md-2">{{product.productName}}</div>
       <div class="col-md-1">{{product.productCode}}</div>
-      <div class="col-md-1">{{product.releaseDate}}</div>
+      <div class="col-md-1">{{product.releaseDate | date }}</div>
       <div class="col-md-1">{{product.price | currency:'USD':symbol:'1.2-2' }}</div>
       <div class="col-md-2">{{product.starRating}}</div>
       <div class="col-md-3 text-right">
