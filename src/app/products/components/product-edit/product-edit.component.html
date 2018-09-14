@@ -66,6 +66,12 @@
             type="date"
             placeholder="Available" 
             formControlName="releaseDate" />
+            <div *ngIf="productForm.controls.releaseDate.invalid && (productForm.controls.releaseDate.dirty || productForm.controls.releaseDate.touched)"
+            class="alert alert-danger">
+            <div *ngIf="productForm.controls.releaseDate.errors.required">
+              Available date is required.
+              </div>
+            </div>
         </div>
       </div>
 
@@ -78,6 +84,12 @@
               type="number"
               placeholder="Price" 
               formControlName="price" />
+              <div *ngIf="productForm.controls.price.invalid && (productForm.controls.price.dirty || productForm.controls.price.touched)"
+              class="alert alert-danger">
+              <div *ngIf="productForm.controls.price.errors.min">
+                Price should not be less than 0.
+                </div>
+              </div>
         </div>
         <div class="col-md-6">
             <label class="control-label" for="starRatingId">Rating (1-5)</label>
