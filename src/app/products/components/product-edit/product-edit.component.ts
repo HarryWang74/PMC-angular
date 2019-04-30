@@ -16,6 +16,7 @@ export class ProductEditComponent implements OnInit {
   saving: boolean;
   productForm: FormGroup;
   product: Product;
+  error: any;
 
   get tags(): FormArray {
     return <FormArray>this.productForm.get('tags');
@@ -51,21 +52,25 @@ export class ProductEditComponent implements OnInit {
   loadDate() {
     this.loading = true;
     this.productService.getProduct(this.id).subscribe(
-      product => {
-        this.product = product;
-        this.productForm.patchValue({
-          productName: this.product.productName,
-          productCode: this.product.productCode,
-          starRating: this.product.starRating,
-          description: this.product.description,
-          imageUrl: this.product.imageUrl,
-          price: this.product.price,
-          releaseDate: this.product.releaseDate
-        });
+      (product:Product) => {
+          this.product = product;
+          this.productForm.patchValue({
+            productName: this.product.productName,
+            productCode: this.product.productCode,
+            starRating: this.product.starRating,
+            description: this.product.description,
+            imageUrl: this.product.imageUrl,
+            price: this.product.price,
+            releaseDate: this.product.releaseDate
+          }
+        );
         this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
         setTimeout(() => {
           this.loading = false;
         }, 500);
+      },
+      error => {
+        this.error = error
       }
     );
   }

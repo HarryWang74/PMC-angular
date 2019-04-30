@@ -12,6 +12,7 @@ export class ProductDetailComponent implements OnInit {
   id: number;
   product: Product;
   loading: boolean;
+  error: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +27,12 @@ export class ProductDetailComponent implements OnInit {
   loadDate() {
     this.loading = true;
     this.productService.getProduct(this.id).subscribe(
-      product => {
+      (product:Product) => {
         this.product = product;
         this.loading = false;
+      },
+      error => {
+        this.error = error
       }
     );
   }

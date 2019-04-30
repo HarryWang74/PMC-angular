@@ -5,7 +5,9 @@
 <ng-container *ngIf="saving">
     <h2>Saving ... </h2>
 </ng-container>
-
+<ng-container *ngIf="error">
+    <h2>{{error.message}}</h2>
+</ng-container>
 <ng-container *ngIf="canEdit()">
   <div class="row mb-3 mt-3">
 

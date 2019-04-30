@@ -1,7 +1,7 @@
 <ng-container *ngIf="loading">
   <h2>Loading ... </h2>
 </ng-container>
-<ng-container *ngIf="error.message.length > 0">
+<ng-container *ngIf="error">
   <h2>{{error.message}}</h2>
 </ng-container>
 <ng-container *ngIf="!loading">

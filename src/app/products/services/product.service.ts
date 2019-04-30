@@ -64,18 +64,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<any> {
-    return this.http.get('http://localhost:3001/products');
+  getProducts(){
+    return this.http.get('http://localhost:3004/products');
   }
 
-  getProduct(id: number): Observable<Product> {
-    if (id === 0) {
-      this.product = this.initializeProduct();
-      return of(this.product).pipe(delay(1000));
-    } else {
-      this.product = this.products.find(item => item.id === id);
-      return of(this.product).pipe(delay(1000));
-    }
+  getProduct(id: number){
+    return this.http.get('http://localhost:3004/products/'+id);
   }
 
   deleteProduct(product: Product): Observable<Product> {
