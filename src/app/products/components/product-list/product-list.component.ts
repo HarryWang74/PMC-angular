@@ -9,7 +9,9 @@ import { Product } from '../../models/product';
 })
 export class ProductListComponent implements OnInit {
   loading: boolean;
+
   products: Product[];
+  error: any;
   listFilter: string;
   
   constructor(
@@ -23,9 +25,12 @@ export class ProductListComponent implements OnInit {
   loadData(): void {
     this.loading = true;
     this.productService.getProducts().subscribe(
-      products => {
+      (products:Product[]) => {
         this.products = products;
         this.loading = false;
+      },
+      error => {
+        this.error = error
       }
     );
   }

@@ -1,6 +1,9 @@
 <ng-container *ngIf="loading">
   <h2>Loading ... </h2>
 </ng-container>
+<ng-container *ngIf="error.message.length > 0">
+  <h2>{{error.message}}</h2>
+</ng-container>
 <ng-container *ngIf="!loading">
   <div class="row mb-3 mt-3">
     <h1>Product list</h1>

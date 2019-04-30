@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Product } from '../models/product';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProductService {
@@ -61,10 +62,10 @@ export class ProductService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return of(this.products).pipe(delay(2000));
+  getProducts(): Observable<any> {
+    return this.http.get('http://localhost:3001/products');
   }
 
   getProduct(id: number): Observable<Product> {

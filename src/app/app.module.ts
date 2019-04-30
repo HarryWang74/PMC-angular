@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     /* 
       整个 app 设置 routingModule, 
       各个 feature 有自己的 routingModule
