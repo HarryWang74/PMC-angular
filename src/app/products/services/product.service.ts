@@ -101,10 +101,7 @@ export class ProductService {
     return this.http.put<Product>('http://localhost:3004/products/'+ product.id, product, this.httpOptions);
   }
 
-  createProduct(product: Product): Observable<Product> {
-    console.log(product);
-    product.id = this.products[this.products.length -1].id + 1;
-    this.products.push(product);
-    return of(product).pipe(delay(1000));
+  createProduct(product: Product){
+    return this.http.post<Product>('http://localhost:3004/products/', product, this.httpOptions);
   }
 }

@@ -124,6 +124,9 @@ export class ProductEditComponent implements OnInit {
       product => {
         this.router.navigate(['list']);
         this.saving = false;
+      },
+      error => {
+        this.error = error
       }
     );
   }
