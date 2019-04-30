@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Product } from '../models/product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ProductService {
@@ -62,6 +62,13 @@ export class ProductService {
     }
   ];
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  }
+
+
   constructor(private http: HttpClient) { }
 
   getProducts(){
@@ -76,7 +83,7 @@ export class ProductService {
     return of(product).pipe(delay(1000));
   }
 
-  initializeProduct(): Product {
+  initializeProduct(){
     return {
         id: 0,
         productName: 'New product',
@@ -90,14 +97,8 @@ export class ProductService {
     };
   }
 
-  updateProduct(product: Product): Observable<Product> {
-    var updatedProduct = this.products.find(product => product.id === product.id);
-    if (updatedProduct != null) {
-      let updatedProjectIndex = this.products.indexOf(updatedProduct);
-      var temp = Object.assign({}, updatedProduct, product);
-      this.products[updatedProjectIndex] = temp;
-   }
-    return of(product).pipe(delay(1000));
+  updateProduct(product: Product){
+    return this.http.put<Product>('http://localhost:3004/products/'+ product.id, product, this.httpOptions);
   }
 
   createProduct(product: Product): Observable<Product> {

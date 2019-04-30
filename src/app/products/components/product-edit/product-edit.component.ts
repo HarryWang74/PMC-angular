@@ -45,8 +45,24 @@ export class ProductEditComponent implements OnInit {
   
 
     this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.loadDate();
-
+    if(this.id > 0){
+      this.loadDate();
+    }else{
+      this.product = this.productService.initializeProduct();
+      this.productForm.patchValue({
+        productName: this.product.productName,
+        productCode: this.product.productCode,
+        starRating: this.product.starRating,
+        description: this.product.description,
+        imageUrl: this.product.imageUrl,
+        price: this.product.price,
+        releaseDate: this.product.releaseDate
+      });
+      this.productForm.setControl('tags', this.fb.array(this.product.tags || []));
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
+    }
   }
 
   loadDate() {
@@ -72,7 +88,7 @@ export class ProductEditComponent implements OnInit {
       error => {
         this.error = error
       }
-    );
+    )
   }
 
   addTag() {
@@ -85,7 +101,7 @@ export class ProductEditComponent implements OnInit {
       // Copy the form values over the product object values
       this.product = Object.assign({}, this.product, this.productForm.value);
       this.productService.updateProduct(this.product).subscribe(
-        product => {
+        (product:Product) => {
           this.router.navigate(['list']);
           this.saving = false;
         }
