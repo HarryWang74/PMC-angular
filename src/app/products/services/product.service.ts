@@ -79,8 +79,8 @@ export class ProductService {
     return this.http.get('http://localhost:3004/products/'+id);
   }
 
-  deleteProduct(product: Product): Observable<Product> {
-    return of(product).pipe(delay(1000));
+  deleteProduct(product: Product){
+    return this.http.delete('http://localhost:3004/products/'+ product.id, this.httpOptions);
   }
 
   initializeProduct(){

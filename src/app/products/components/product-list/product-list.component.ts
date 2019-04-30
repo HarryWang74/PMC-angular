@@ -38,11 +38,11 @@ export class ProductListComponent implements OnInit {
   deleteProduct(product: Product): void {
     product.deleting = true;
     this.productService.deleteProduct(product).subscribe(
-      deletedProduct => {
-        let index = this.products.indexOf(deletedProduct);
-        if ( index !== -1) {
-          this.products.splice(index, 1);
-        }
+      (deletedProduct:Product) => {
+        this.loadData();
+      },
+      error => {
+        this.error = error
       }
     );
   }
