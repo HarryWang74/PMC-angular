@@ -123,13 +123,23 @@
           <label class="control-label">Tags</label>
           
           <div class="form-group row">
-              <div class="col-md-3"
-              *ngFor="let tag of tags.controls; let i=index">
-              <input class="form-control" 
-              [id]="i" 
-              type="text" 
-              placeholder="Tag" 
-              [formControlName]="i" />
+              <div class="col-md-3 col-md-3 mb-3"
+                *ngFor="let tag of tags.controls; let i=index">
+                <div class="input-group">
+                  <input class="form-control" 
+                    [id]="i" 
+                    type="text" 
+                    placeholder="Tag" 
+                    [formControlName]="i" />
+                    <div class="input-group-append">
+                      <button 
+                      class="btn btn-outline-secondary"
+                      type="button">-</button>
+                    <button 
+                      class="btn btn-outline-secondary"
+                      type="button">+</button>
+                    </div>
+                </div>
             </div>
           </div>
 
