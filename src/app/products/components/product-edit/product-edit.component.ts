@@ -98,6 +98,7 @@ export class ProductEditComponent implements OnInit {
   updateProduct(){
     if (this.productForm.dirty && this.productForm.valid) {
       this.saving = true;
+      console.log(this.productForm.value);
       // Copy the form values over the product object values
       this.product = Object.assign({}, this.product, this.productForm.value);
       this.productService.updateProduct(this.product).subscribe(
@@ -129,5 +130,10 @@ export class ProductEditComponent implements OnInit {
         this.error = error
       }
     );
+  }
+
+  removeTag(tag){
+    this.tags.removeAt(this.tags.value.findIndex(tag => tag === tag))
+    this.productForm.markAsDirty()
   }
 }

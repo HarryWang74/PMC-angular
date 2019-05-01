@@ -133,11 +133,9 @@
                     [formControlName]="i" />
                     <div class="input-group-append">
                       <button 
-                      class="btn btn-outline-secondary"
-                      type="button">-</button>
-                    <button 
-                      class="btn btn-outline-secondary"
-                      type="button">+</button>
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        (click)="removeTag(tag, tags.controls); $event.stopPropagation(); $event.preventDefault();">-</button>
                     </div>
                 </div>
             </div>
